@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   《听见古典》 — 国际顶尖设计美学系统 (Landing.love · Land-book · 21st.dev · Awwwards)
+   建筑级黑曜深空 · 极简冷月微光 · 锋利微透悬浮 · 高度克制纯粹艺术
+   ============================================================ */
+
+@layer base {
+  :root {
+    --bg-page: #060709;          /* 特别深沉的黑曜炭素黑灰底色 */
+    --text-primary: #E5E5E7;     /* 钛骨微暖清晰高保真文字 */
+    --text-secondary: #9FA0A7;   /* 高级炭灰色副文本 */
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --color-accent: #E5E5E7;
+  }
+
+  .dark {
+    --bg-page: #050608;          /* 极深邃黑曜玄空 */
+    --text-primary: #E5E5E7;     /* 纯净沉稳文字 */
+    --text-secondary: #9FA0A7;   /* 炭素银灰副文本 */
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --color-accent: #E5E5E7;
+  }
+
+  /* 方案一专属类：欧洲古籍沙龙纸本暖调（保留为备选） */
+  html.theme-salon {
+    --bg-page: #F6F3EC;
+    --text-primary: #23201D;
+    --text-secondary: #635B52;
+    --border-subtle: #E2D9C8;
+    --color-accent: #23201D;
+  }
+
+  /* 方案二专属类：黄昏音乐厅极深胡桃木与烟熏炭素 */
+  html.theme-walnut,
+  html.dark.theme-walnut {
+    --bg-page: #0C0A09;          /* 特别深沉的古董胡桃木炭黑 */
+    --text-primary: #E5E0D8;     /* 羊皮纸暖白微光字 */
+    --text-secondary: #9C9488;   /* 暖调浮雕银灰 */
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --color-accent: #E5E0D8;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* 环境光：极深邃低照度沉静微光 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 特别深邃的重型黑角晕染 */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.75) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 平滑滚动与选中文本 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+  }
+}
+
+@layer components {
+  /* 艺术衬线字体标题 */
+  .heading-serif {
+    @apply font-serif tracking-tight text-balance;
+  }
+
+  .heading-display {
+    @apply font-serif tracking-tight leading-[1.08];
+  }
+
+  /* 国际顶尖全宽呼吸排版 */
+  .content-area {
+    @apply max-w-[1520px] w-full mx-auto px-4 sm:px-6 lg:px-10;
+  }
+
+  .reading-area {
+    @apply max-w-[860px] mx-auto px-4 sm:px-6;
+  }
+
+  /* 极深黑灰展陈卡片 (Obsidian Glass Vitrine) */
+  .card-museum {
+    @apply relative bg-[#0B0C0F] dark:bg-[#0B0C0F] backdrop-blur-2xl
+           rounded-2xl border border-white/[0.06]
+           shadow-[0_16px_50px_rgba(0,0,0,0.95)]
+           transition-all duration-300 ease-out overflow-hidden;
+  }
+
+  .card-museum:hover {
+    @apply shadow-[0_24px_60px_rgba(0,0,0,0.98)]
+           border-white/[0.14] bg-[#0E0F14] -translate-y-1;
+  }
+
+  /* 艺术背景卡片 (Curated Card with Clean Framing) */
+  .card-curated {
+    @apply relative overflow-hidden rounded-2xl group border border-white/[0.06]
+           hover:border-white/[0.18]
+           transition-all duration-500 ease-out
+           shadow-[0_16px_45px_rgba(0,0,0,0.9)] hover:shadow-2xl hover:-translate-y-1.5;
+  }
+
+  /* Landing.love / Linear 风格高对比主按钮 */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-full
+           bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 font-sans text-sm font-semibold tracking-wide
+           hover:bg-zinc-800 dark:hover:bg-zinc-200 active:scale-[0.98]
+           shadow-[0_4px_20px_rgba(0,0,0,0.15)] dark:shadow-[0_0_25px_rgba(255,255,255,0.18)]
+           transition-all duration-200 border border-transparent dark:border-white/20;
+  }
+
+  /* 极简透光次级按钮 */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-full
+           bg-zinc-100 text-zinc-900 dark:bg-white/[0.06] dark:text-zinc-100
+           border border-zinc-200 dark:border-white/[0.12]
+           font-sans text-sm font-medium tracking-wide
+           hover:bg-zinc-200/80 dark:hover:bg-white/[0.12]
+           hover:border-zinc-300 dark:hover:border-white/[0.25]
+           shadow-sm transition-all duration-200 backdrop-blur-sm;
+  }
+
+  /* 幽灵按钮 */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5
+           px-3.5 py-2 rounded-full
+           text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white
+           hover:bg-zinc-100 dark:hover:bg-white/[0.08]
+           transition-all duration-200;
+  }
+
+  /* 21st.dev 风格纯粹标签系统 */
+  .tag {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full
+           text-[10px] font-mono tracking-wider uppercase
+           bg-zinc-100 dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300
+           border border-zinc-200 dark:border-white/[0.1];
+  }
+
+  .tag-crimson, .tag-bordeaux {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full
+           text-[10px] font-mono tracking-wider uppercase
+           bg-zinc-100 dark:bg-white/[0.08] text-zinc-900 dark:text-zinc-200
+           border border-zinc-300 dark:border-white/[0.15] font-semibold;
+  }
+
+  .tag-sapphire, .tag-azure, .tag-prussian {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full
+           text-[10px] font-mono tracking-wider uppercase
+           bg-zinc-100 dark:bg-white/[0.08] text-zinc-900 dark:text-zinc-200
+           border border-zinc-300 dark:border-white/[0.15] font-semibold;
+  }
+
+  .tag-gold, .tag-platinum {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full
+           text-[10px] font-mono tracking-wider uppercase
+           bg-zinc-100 dark:bg-white/[0.08] text-zinc-900 dark:text-zinc-200
+           border border-zinc-300 dark:border-white/[0.15] font-semibold;
+  }
+
+  /* ============================================================
+     100点方案核心质感增强库 (Gold Shimmer · Vacuum Tube · Passepartout)
+     ============================================================ */
+
+  /* 点 4：古典金漆蚀刻流光标题 */
+  .gilded-text {
+    background: linear-gradient(90deg, #E6C26E 0%, #FFF4D9 25%, #E6C26E 50%, #D4AF37 75%, #E6C26E 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShimmer 10s linear infinite;
+  }
+
+  @keyframes goldShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* 点 99：老式真空电子管温热琥珀灯丝辉光 */
+  .tube-filament {
+    animation: tubeFilamentPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes tubeFilamentPulse {
+    0%, 100% {
+      opacity: 0.82;
+      filter: drop-shadow(0 0 5px rgba(255, 145, 0, 0.75));
+    }
+    50% {
+      opacity: 1;
+      filter: drop-shadow(0 0 12px rgba(255, 179, 0, 0.95)) drop-shadow(0 0 20px rgba(255, 110, 0, 0.4));
+    }
+  }
+
+  /* 点 71：黑胶蝴蝶形菲涅尔高光 */
+  .vinyl-fresnel {
+    background:
+      repeating-radial-gradient(circle at center, #111B10 0, #111B10 2px, #070D08 3px, #070D08 5px),
+      radial-gradient(ellipse at 30% 30%, rgba(168, 226, 160, 0.22), transparent 50%),
+      radial-gradient(ellipse at 70% 70%, rgba(212, 175, 55, 0.16), transparent 50%),
+      radial-gradient(ellipse at 30% 70%, rgba(168, 226, 160, 0.12), transparent 45%),
+      radial-gradient(ellipse at 70% 30%, rgba(212, 175, 55, 0.14), transparent 45%);
+  }
+
+  /* 点 73：利都奈罗小回归动态雷达追踪环 */
+  .ritornello-radar {
+    animation: ritornelloRadarPulse 3.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+
+  @keyframes ritornelloRadarPulse {
+    0% {
+      transform: scale(0.97);
+      opacity: 0.25;
+      box-shadow: 0 0 6px rgba(118, 184, 111, 0.15);
+    }
+    50% {
+      transform: scale(1.01);
+      opacity: 0.65;
+      box-shadow: 0 0 16px rgba(118, 184, 111, 0.25), inset 0 0 10px rgba(212, 175, 55, 0.18);
+    }
+    100% {
+      transform: scale(0.97);
+      opacity: 0.25;
+      box-shadow: 0 0 6px rgba(118, 184, 111, 0.15);
+    }
+  }
+
+  /* 点 13：美术馆实木内框双重装裱卡槽 */
+  .passepartout-frame {
+    box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.3), inset 0 0 0 5px rgba(0, 0, 0, 0.4), 0 14px 35px rgba(0, 0, 0, 0.7);
+  }
+
+  /* 戏院追光与明暗交错系统 (Chiaroscuro System) */
+  .chiaroscuro-stage {
+    background: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(255, 235, 190, 0.08) 0%, rgba(212, 175, 55, 0.02) 45%, transparent 75%);
+  }
+
+  /* 棱角高光切面：顶边接光，底边沉入阴影，形成立体深邃的物理雕塑感 (卡拉瓦乔明暗对照) */
+  .rim-light-bevel {
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12), 0 20px 50px -10px rgba(0, 0, 0, 0.95);
+  }
+
+  .rim-light-bevel:hover {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 1px 2px 0 rgba(255, 255, 255, 0.2), 0 25px 60px -10px rgba(0, 0, 0, 0.98);
+  }
+
+  /* 舞台聚光交错卡片：中心投射微暖光芒，四周深黑渐隐 */
+  .spotlight-card {
+    background: radial-gradient(circle at 40% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 65%), #08090C;
+  }
+
+  /* 点 61：手抄本首字下沉华丽花体 */
+  .drop-cap-illuminated::first-letter {
+    float: left;
+    font-size: 3.25rem;
+    line-height: 0.85;
+    padding-top: 4px;
+    padding-right: 12px;
+    padding-bottom: 2px;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: #D4AF37;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+  }
+
+  /* 点 92：火漆印章微拟物效果 */
+  .wax-seal {
+    box-shadow: 0 4px 12px rgba(159, 18, 57, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.25), inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+  }
+}
