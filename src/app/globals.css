@@ -24,14 +24,7 @@
     --color-accent: #E5E5E7;
   }
 
-  /* 方案一专属类：欧洲古籍沙龙纸本暖调（保留为备选） */
-  html.theme-salon {
-    --bg-page: #F6F3EC;
-    --text-primary: #23201D;
-    --text-secondary: #635B52;
-    --border-subtle: #E2D9C8;
-    --color-accent: #23201D;
-  }
+
 
   /* 方案二专属类：黄昏音乐厅极深胡桃木与烟熏炭素 */
   html.theme-walnut,
